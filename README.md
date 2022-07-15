@@ -66,7 +66,6 @@ CFnet_model = CFNet(n_classes = 5, base_model = model, output_layers = layers_ou
 
 ## References
 <p>Using custom layers and main code from TensorFlow Advanced Segmentation Models (TASM).</p>
-<p>.</p>
 
 - TensorFlow Advanced Segmentation Models, GitHub, GitHub Repository, https://github.com/JanMarcelKezmann/TensorFlow-Advanced-Segmentation-Models
 - Code from author of paper, GitHub, GitHub Repository, https://github.com/zhanghang1989/PyTorch-Encoding
