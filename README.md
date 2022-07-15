@@ -62,7 +62,8 @@ CFnet_model = CFNet(n_classes = 5, base_model = model, output_layers = layers_ou
 If you want to use the Functional Model class define instead:
 
 ```python
-CFnet_model = CFNet(n_classes = 5, base_model = model, output_layers = layers_outputs, n_heads=2, n_mix = 4,backbone_trainable = True,  height= HEIGHT, width= WIDTH)
+CFnet_model = CFNet(n_classes = 5, base_model = model, output_layers = layers_outputs, n_heads=2, 
+n_mix = 4,backbone_trainable = True,  height= HEIGHT, width= WIDTH).model()
 ```
 
 ## References
