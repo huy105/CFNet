@@ -34,6 +34,7 @@ or directly install it:<br>
 Please check that **Tensorflow** is installed on your computer.
 
 To import the model just use the standard python import statement
+
 Firstly, import function to get base model (backbone) and main head (CFNet):
 
 ```python
