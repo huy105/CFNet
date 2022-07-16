@@ -11,7 +11,7 @@ Implementation from paper "Co-Occurrent Features in Semantic Segmentation"
 - High Level API
 - ResNet101 backbones
 - Models can be used as Subclassed or Functional Model
-- Implement like paper code and adding multi head attention to CFNet with source code from TASM
+- Implement like paper code, adding multi head attention and mixtures of softmax to CFNet with source code from TASM
 
 ## Installation and Setup
 **Requirements**
