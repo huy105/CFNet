@@ -11,7 +11,7 @@ Implementation from paper "Co-Occurrent Features in Semantic Segmentation"
 - High Level API
 - ResNet101 backbones
 - Models can be used as Subclassed or Functional Model
-- Implement like paper code and adding multi head attention to CFNet with source code from TASM
+- Implement like paper code, adding multi head attention and mixtures of softmax to CFNet with source code from TASM
 
 ## Installation and Setup
 **Requirements**
@@ -34,6 +34,7 @@ or directly install it:<br>
 Please check that **Tensorflow** is installed on your computer.
 
 To import the model just use the standard python import statement
+
 Firstly, import function to get base model (backbone) and main head (CFNet):
 
 ```python
@@ -61,7 +62,8 @@ CFnet_model = CFNet(n_classes = 5, base_model = model, output_layers = layers_ou
 If you want to use the Functional Model class define instead:
 
 ```python
-CFnet_model = CFNet(n_classes = 5, base_model = model, output_layers = layers_outputs, n_heads=2, n_mix = 4,backbone_trainable = True,  height= HEIGHT, width= WIDTH)
+CFnet_model = CFNet(n_classes = 5, base_model = model, output_layers = layers_outputs, n_heads=2, 
+n_mix = 4,backbone_trainable = True,  height= HEIGHT, width= WIDTH).model()
 ```
 
 ## References
