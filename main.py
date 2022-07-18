@@ -7,8 +7,8 @@ from AggCF_Module import AggCF_Module
 class CFNet(tf.keras.Model):
     # Co-occurent Feature Network
     def __init__(self, n_classes, base_model, output_layers, height=None, width=None, filters=512, 
-                n_heads=8, n_mix = 1, final_activation="softmax", backbone_trainable=False,
-                lateral=True, global_pool=False, acf_pool=True,
+                n_heads=8, n_mix = 1, dropout_acf = 0.25,final_activation="softmax", backbone_trainable=False,
+                lateral=True, global_pool=True, acf_pool=True,
                 acf_kq_transform="ffn", acf_concat=False, **kwargs):
         super(CFNet, self).__init__(**kwargs)
 
@@ -25,6 +25,7 @@ class CFNet(tf.keras.Model):
         self.width = width
         self.n_heads = n_heads 
         self.n_mix = n_mix 
+        self.dropout_acf = dropout_acf
 
 
         output_layers = output_layers[1:5]
@@ -52,7 +53,7 @@ class CFNet(tf.keras.Model):
         d_v = filters // self.n_heads
         self.acf = AggCF_Module(filters, d_k = d_k, d_v = d_v, n_heads = self.n_heads, n_mix = self.n_mix ,
                             kq_transform=self.acf_kq_transform, value_transform="conv",
-                            pooling=self.acf_pool, concat=self.acf_concat, dropout=0.1)
+                            pooling=self.acf_pool, concat=self.acf_concat, dropout = self.dropout_acf)
         
         self.final_conv3x3_bn_activation = ConvolutionBnActivation(n_classes, (3, 3), post_activation=final_activation)
         self.final_upsampling2d = tf.keras.layers.UpSampling2D(size=8, interpolation="bilinear")
@@ -87,6 +88,7 @@ class CFNet(tf.keras.Model):
         x = self.final_conv3x3_bn_activation(feat, training=training)
         x = self.final_upsampling2d(x)
 
+        assert x.shape[1:3] == inputs.shape[1:3]
         return x
 
     def model(self):
